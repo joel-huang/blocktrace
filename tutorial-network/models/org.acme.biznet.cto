@@ -1,0 +1,49 @@
+namespace org.acme.biznet
+
+
+concept UserData {
+    o String data
+}
+
+participant User identified by userID {
+    o int userID
+    o String name
+    o UserData userData
+    o boolean access
+}
+
+
+// publish encrypted data and rsa key
+transaction Publish {
+    o User user
+    o UserData userData
+}
+
+transaction Get {
+    o User user
+    o UserData userData
+}
+
+// interface for transactions
+abstract transaction UserModifyAccess {
+    o User user
+}
+
+transaction UserGrantAccess extends UserModifyAccess {
+}
+
+transaction UserRevokeAccess extends UserModifyAccess {
+}
+
+// interface for transactions
+abstract transaction AdminModifyAccess {
+    o User administrator
+    o User user
+}
+
+transaction AdminGrantAccess extends AdminModifyAccess {
+}
+
+transaction AdminRevokeAccess extends AdminModifyAccess {
+}
+
