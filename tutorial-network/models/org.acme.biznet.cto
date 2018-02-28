@@ -9,9 +9,11 @@ participant User identified by userID {
     o int userID
     o String name
     o UserData userData
-    o boolean access
+    o Boolean access
 }
 
+// transactions are changes to the global state of
+// the blockchain that are recorded and can be queried
 
 // publish encrypted data and rsa key
 transaction Publish {

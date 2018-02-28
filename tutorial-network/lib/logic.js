@@ -13,27 +13,63 @@ function tradeCommodity(trade) {
 
 function getUserData(get) {
 	
-	// TODO: check get.user.access
-	// TODO: do http GET to retrieve 
-
+	// check get.user.access
+	
 }
 
-function publishBlock(publish) {
+function createUser() {
+	// create new instance of a User
+	var userFactory = getFactory();
+	var newUser = userFactory.newResource('org.acme', 'User', name);
+	newUser.userID = 
+}
+
+function publish(publish) {
+
+	// receive encrypted data and RSA public key from backend
+
+	
+	// send block id to backend
+	sendBlockID();
+	// new event
+}
+
+function postUserID(blockID) {
+	// rest call to backend with user's block id
+	//get url
+	post(url, typed)
+	/
 
 }
 
 function grantAccess(userGrantAccess) {
 	userGrantAccess.user.access = true;
+    return getParticipantRegistry('org.acme.biznet.User')
+        .then(function (participantRegistry) {
+            return participantRegistry.update(userGrantAccess.user);
+    	});
 }
 
 function revokeAccess(userRevokeAccess) {
 	userRevokeAccess.user.access = false;
+	return getParticipantRegistry('org.acme.biznet.User')
+        .then(function (participantRegistry) {
+            return participantRegistry.update(userRevokeAccess.user);
+    	});
 }
 
 function grantAccess(adminGrantAccess) {
 	adminGrantAccess.user.access = true;
+	return getParticipantRegistry('org.acme.biznet.User')
+        .then(function (participantRegistry) {
+            return participantRegistry.update(adminGrantAccess.user);
+    	});
 }
 
 function revokeAccess(adminRevokeAccess) {
 	adminRevokeAccess.user.access = false;
+	return getParticipantRegistry('org.acme.biznet.User')
+        .then(function (participantRegistry) {
+            return participantRegistry.update(adminRevokeAccess.user);
+    	});
 }
