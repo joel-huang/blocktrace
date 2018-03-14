@@ -1,0 +1,86 @@
+namespace org.acme.biznet
+
+/*
+    Primitives:
+    String: a UTF8 encoded String.
+    Double: a double precision 64 bit numeric value.
+    Integer: a 32 bit signed whole number.
+    Long: a 64 bit signed whole number.
+    DateTime: an ISO-8601 compatible time instance, with optional time zone and UTZ offset.
+    Boolean: a Boolean value, either true or false.
+*/
+
+
+// concepts are abstract classes that are not
+// assets, transactions or participants
+concept UserData {
+    o String name
+    o String id
+    o String postcode
+    o String birthdate
+    o String merkle_root
+    o String rsa_public_key
+}
+
+participant Administrator identified by adminId {
+  o String adminId
+}
+
+participant User identified by userId {
+    o String userId
+    o String name
+    o UserData userData
+    o Boolean access
+}
+
+// transactions are changes to the global state of
+// the blockchain that are recorded and can be queried
+
+transaction getUserData {
+    o User user
+    o UserData userData
+}
+
+transaction createUser {
+    o UserData userData
+    o Boolean access
+}
+
+transaction updateUserEncryptedData {
+	o String userId
+    o UserData newData
+}
+
+transaction grantAccess {
+    o String userId
+}
+
+transaction revokeAccess {
+    o String userId
+}
+
+event UserAccessRightsChanged {
+    o User user
+    o Boolean oldValue
+    o Boolean newValue
+}
+
+event NewUserCreated {
+    o User user
+}
+
+event UserEncryptedDataUpdated {
+  	o User user
+    o String oldName
+    o String oldId
+    o String oldPostcode
+    o String oldBirthdate
+    o String oldMerkleRoot
+    o String oldRSAkey
+    o String newName
+    o String newId
+    o String newPostcode
+    o String newBirthdate
+    o String newMerkleRoot
+    o String newRSAkey
+}  
