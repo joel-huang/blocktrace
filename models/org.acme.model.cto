@@ -15,7 +15,7 @@ namespace org.acme.biznet
 // assets, transactions or participants
 concept UserData {
     o String name
-    o String id
+    o String encrypted_id
     o String postcode
     o String birthdate
     o String merkle_root
@@ -26,9 +26,8 @@ participant Administrator identified by adminId {
   o String adminId
 }
 
-participant User identified by userId {
-    o String userId
-    o String name
+participant User identified by hashed_id {
+    o String hashed_id
     o UserData userData
     o Boolean access
 }
@@ -42,21 +41,22 @@ transaction getUserData {
 }
 
 transaction createUser {
+  	o String hashed_id
     o UserData userData
     o Boolean access
 }
 
 transaction updateUserEncryptedData {
-	o String userId
+	o String hashed_id
     o UserData newData
 }
 
 transaction grantAccess {
-    o String userId
+    o String hashed_id
 }
 
 transaction revokeAccess {
-    o String userId
+    o String hashed_id
 }
 
 event UserAccessRightsChanged {
@@ -72,13 +72,13 @@ event NewUserCreated {
 event UserEncryptedDataUpdated {
   	o User user
     o String oldName
-    o String oldId
+    o String oldEncryptedId
     o String oldPostcode
     o String oldBirthdate
     o String oldMerkleRoot
     o String oldRSAkey
     o String newName
-    o String newId
+    o String newEncryptedId
     o String newPostcode
     o String newBirthdate
     o String newMerkleRoot
