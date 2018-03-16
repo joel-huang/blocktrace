@@ -1,0 +1,1 @@
+jsdoc -d ./docs lib/script.js
