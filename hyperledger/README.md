@@ -1,11 +1,5 @@
 # Blocktrace, a decentralized identity management system
 
-## Files
-* `/hyperledger` contains the Hyperledger blockchain logic, smart contracts and authentication cards
-* `/KYCBackendServer` contains the backend server, which interfaces with the blockchain and handles cryptography
-* `/kyc-admin-app` contains the application used by the service to obtain and verify new customer requests
-
-
 ## Description
 * Development repository for Blocktrace, a Hyperledger Fabric blockchain back-end supporting remote and decentralized identity verification for businesses to securely onboard customers with no hassle
 * Deployed on IBM Cloud using Kubernetes

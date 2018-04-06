@@ -1,0 +1,6 @@
+[submodule "kyc-admin-app"]
+	path = kyc-admin-app
+	url = https://github.com/tgsy/kyc-admin-app
+[submodule "KYCBackendServer"]
+	path = KYCBackendServer
+	url = https://github.com/nightzsky/KYCBackendServer

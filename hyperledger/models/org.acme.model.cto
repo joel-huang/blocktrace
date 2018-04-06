@@ -46,6 +46,10 @@ transaction createUser {
     o Boolean access
 }
 
+transaction deleteUser {
+  	o String hashed_id
+}
+
 transaction updateUserEncryptedData {
 	o String hashed_id
     o UserData newData
@@ -67,6 +71,10 @@ event UserAccessRightsChanged {
 
 event NewUserCreated {
     o User user
+}
+
+event UserDeleted {
+  	o String deleted_id
 }
 
 event UserEncryptedDataUpdated {
