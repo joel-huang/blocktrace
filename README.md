@@ -1,5 +1,9 @@
 # Blocktrace, a decentralized identity management system
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/1ba7f24417c42950f78e/maintainability)](https://codeclimate.com/github/joel-huang/blocktrace/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1ba7f24417c42950f78e/test_coverage)](https://codeclimate.com/github/joel-huang/blocktrace/test_coverage)   
+
+
 ## Files
 * `/hyperledger` contains the Hyperledger blockchain logic, smart contracts and authentication cards
 * `/KYCBackendServer` contains the backend server, which interfaces with the blockchain and handles cryptography
