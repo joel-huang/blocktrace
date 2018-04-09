@@ -138,30 +138,7 @@ function updateUserEncryptedData(updateUserEncryptedData) {
 * @transaction
 */
 function grantAccess(userGrantAccess) {
-
-    return getParticipantRegistry('org.acme.biznet.User')
-    .then(function (userRegistry) {
-    	return userRegistry.get(userGrantAccess.hashed_id);
-    })
-    .then(function (existingUser) {
-      
-      	// Update the access rights
-      	var existingAccessValue = existingUser.access;
-      	existingUser.access = true;
-      
-      	// Update the registry.
-      	getParticipantRegistry('org.acme.biznet.User')
-      	.then(function(userRegistry) {
-        	return userRegistry.update(existingUser);
-        });
-      	
-        // Emit an event for the new user creation.
-        var event = getFactory().newEvent('org.acme.biznet', 'UserAccessRightsChanged');
-        event.user = existingUser;
-      	event.oldValue = existingAccessValue;
-      	event.newValue = existingUser.access;
-        emit(event);
-    });
+    modifyAccess(userGrantAccess.hashed_id, true);
 }
 
 /**
@@ -171,16 +148,22 @@ function grantAccess(userGrantAccess) {
 * @transaction
 */
 function revokeAccess(userRevokeAccess) {
+	modifyAccess(userRevokeAccess.hashed_id, false);
+}
 
-    return getParticipantRegistry('org.acme.biznet.User')
+/*
+	Internal private functions
+*/
+function modifyAccess(hashed_id, modifier) {
+      return getParticipantRegistry('org.acme.biznet.User')
     .then(function (userRegistry) {
-    	return userRegistry.get(userRevokeAccess.hashed_id);
+    	return userRegistry.get(hashed_id);
     })
     .then(function (existingUser) {
       
       	// Update the access rights
       	var existingAccessValue = existingUser.access;
-      	existingUser.access = false;
+      	existingUser.access = modifier;
       
        	// Update the registry.
       	getParticipantRegistry('org.acme.biznet.User')
@@ -196,7 +179,3 @@ function revokeAccess(userRevokeAccess) {
         emit(event);
     });
 }
-
-/*
-	Internal private functions
-*/

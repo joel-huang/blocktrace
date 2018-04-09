@@ -5,11 +5,16 @@
 * `/KYCBackendServer` contains the backend server, which interfaces with the blockchain and handles cryptography
 * `/kyc-admin-app` contains the application used by the service to obtain and verify new customer requests
 
+## Installation and Development
+* Always develop on Composer Playground (in the demo, at http://173.193.98:31080). When done, export as `.bna`
+* Extract the `.bna`: Using `7z` or equivalent, run `7z e -o./hyperledger devtest.bna` or equivalent.
+* Extract the contents of `blocktrace/hyperledger` with the extracted `.bna`, and re-run `generate_jsdoc.bat`.
+* Finally, `git add`/`commit`/`push`.
 
 ## Description
 * Development repository for Blocktrace, a Hyperledger Fabric blockchain back-end supporting remote and decentralized identity verification for businesses to securely onboard customers with no hassle
 * Deployed on IBM Cloud using Kubernetes
-* REST server and RESTful API at 173.193.102.98:31090/explorer
+* REST server and RESTful API at https://173.193.102.98:31090/explorer
 
 ## About 
 
